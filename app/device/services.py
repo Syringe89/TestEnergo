@@ -7,19 +7,19 @@ from app.device.db import async_session
 from app.device.models import Device, Endpoint
 
 
-async def create_new_endpoints_db(new_endpoint: Endpoint):
+async def create_new_endpoints(new_endpoint: Endpoint):
     async with async_session() as session:
         await session.merge(new_endpoint)
         await session.commit()
 
 
-async def create_new_device_db(new_device: Device):
+async def create_new_device(new_device: Device):
     async with async_session() as session:
         await session.merge(new_device)
         await session.commit()
 
 
-async def get_devices_without_endpoint_db():
+async def get_devices_without_endpoint():
     async with async_session() as session:
         devices = await session.execute(
             select(Device.dev_type, count(Device.id).label('number_of_devices')).join(Endpoint,

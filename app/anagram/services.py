@@ -1,12 +1,12 @@
 from app.anagram.db import redis
 
 
-async def get_number_of_anagrams_redis() -> int:
+async def get_number_of_anagrams() -> int:
     result = await redis.get('anagram_counter')
     return 0 if result is None else int(result)
 
 
-async def set_number_of_anagrams_redis(value: int):
+async def set_number_of_anagrams(value: int):
     if value == 1:
         await redis.set('anagram_counter', 1)
     else:
