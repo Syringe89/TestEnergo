@@ -7,6 +7,7 @@ from sqlalchemy import pool
 from sqlalchemy.ext.asyncio import AsyncEngine
 
 from app.device.db import Base, POSTGRESQL_URL
+from app.device.models import Device, Endpoint  #don't delete, need for alembic migraton
 
 config = context.config
 

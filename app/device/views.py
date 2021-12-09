@@ -3,7 +3,7 @@ from random import shuffle
 from fastapi import APIRouter
 
 from app.device.models import Device, Endpoint
-from app.device.services import generate_dev_type, generate_macaddr, create_new_device, create_new_endpoints, \
+from app.device.services import generate_dev_type, generate_macaddr, create_new_device, create_new_endpoint, \
     get_devices_without_endpoint
 
 router_device = APIRouter()
@@ -26,7 +26,7 @@ async def add_devices_and_endpoints_view():
         new_endpoint = Endpoint(id=i, device_id=shuffled_list_of_devices[i],
                                 comment=f'point to {shuffled_list_of_devices[i]} device')
         list_of_endpoints.append(new_endpoint)
-        await create_new_endpoints(new_endpoint)
+        await create_new_endpoint(new_endpoint)
 
     return {'list_of_devices:': list_of_devices, 'list_of_endpoints:': list_of_endpoints}
 

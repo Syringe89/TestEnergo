@@ -7,7 +7,7 @@ from app.device.db import async_session
 from app.device.models import Device, Endpoint
 
 
-async def create_new_endpoints(new_endpoint: Endpoint):
+async def create_new_endpoint(new_endpoint: Endpoint):
     async with async_session() as session:
         await session.merge(new_endpoint)
         await session.commit()
